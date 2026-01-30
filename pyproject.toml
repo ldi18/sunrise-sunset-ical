@@ -1,0 +1,14 @@
+[project]
+name = "sunrise-sunset-ical"
+version = "1.0.0"
+description = "Generate iCalendar files with sunrise and sunset times"
+requires-python = ">=3.8"
+dependencies = [
+    "astral>=3.0.0",
+    "icalendar>=5.0.0",
+    "pytz>=2024.1",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
