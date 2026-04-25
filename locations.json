@@ -1,0 +1,14 @@
+{
+  "MUNICH": {
+    "LAT": 48.13743,
+    "LON": 11.57549,
+    "TIMEZONE": "Europe/Berlin",
+    "REGION": "DE"
+  },
+  "ATHENS": {
+    "LAT": 37.92382976100573,
+    "LON": 23.750987110611046,
+    "TIMEZONE": "Europe/Athens",
+    "REGION": "GR"
+  }
+}

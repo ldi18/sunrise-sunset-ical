@@ -1,24 +1,33 @@
 from datetime import date, datetime, timedelta
+import json
 from astral import LocationInfo
 from astral.sun import sun
 from icalendar import Calendar, Event
 import pytz
 
 # ---- config ----
-LAT = 48.13743
-LON = 11.57549
-TIMEZONE = "Europe/Berlin"
+with open("locations.json", "r", encoding="utf-8") as f:
+    LOCATIONS = json.load(f)
+
+LOCATION_KEY = "MUNICH"
 START_DATE = date(2026, 1, 1)
 END_DATE   = date(2026, 12, 31)
 
 # ---- location ----
-tz = pytz.timezone(TIMEZONE)
+location_config = LOCATIONS[LOCATION_KEY]
+lat = location_config["LAT"]
+lon = location_config["LON"]
+timezone = location_config["TIMEZONE"]
+region = location_config["REGION"]
+location_name = LOCATION_KEY.title()
+
+tz = pytz.timezone(timezone)
 location = LocationInfo(
-    name="Munich",
-    region="DE",
-    timezone=TIMEZONE,
-    latitude=LAT,
-    longitude=LON,
+    name=location_name,
+    region=region,
+    timezone=timezone,
+    latitude=lat,
+    longitude=lon,
 )
 
 # ---- calendar ----
@@ -49,7 +58,7 @@ while current <= END_DATE:
     current += timedelta(days=1)
 
 # ---- write file ----
-with open("sunrise_sunset_munich_2026.ics", "wb") as f:
+with open("sunrise_sunset.ics", "wb") as f:
     f.write(cal.to_ical())
 
 print("ICS file generated ✔", flush=True)
